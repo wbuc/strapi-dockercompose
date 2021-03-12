@@ -1,0 +1,25 @@
+version: '3'
+services:
+  strapi:
+    image: strapi/strapi
+    volumes:
+      - ./app:/srv/app
+    ports:
+      - '1338:1337'
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_NAME: strapi
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+  postgres:
+    image: postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - '5434:5432'
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
